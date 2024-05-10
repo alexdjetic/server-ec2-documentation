@@ -1,0 +1,35 @@
+version: '1'
+services:
+  smb:
+    image: dperson/samba:latest
+    environment:
+      - USER=oem
+      - PASSWORD=wm7ze*2b
+    command: -u "${USER};${PASSWORD}" -s "www;/srv/www;yes;no;no;share"
+    volumes:
+      - ./www:/srv/www
+    ports:
+      - "445:445"
+      - "139:139"
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./www:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8180:80"
+    restart: always
+
+  ftp:
+    image: atmoz/sftp:latest
+    volumes:
+      - ./www:/home/foo/upload
+    ports:
+      - "2222:22"
+    environment:
+      - USER=foo
+      - PASSWORD=pass
+    restart: always
+
