@@ -5,8 +5,8 @@
 # Description: this script launch all the command require to run the documentation instance
 
 # update repo and install package
-apt update && apt upgrade -y
-apt install podman -y
+sudo apt update && apt upgrade -y
+sudo apt install podman -y
 
 # podman start
 podman-compose up -d
