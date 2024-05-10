@@ -1,20 +1,6 @@
 version: '1'
 
 services:
-  smb:
-    image: docker.io/dperson/samba:latest
-    command: -u "share;wm7ze*2b" -s "www;/srv/www;no;no;yes;share"
-    volumes:
-      - ./www:/srv/www
-    ports:
-      - "139:139/tcp"
-      - "445:445/tcp"
-      - "137:137/udp"
-      - "138:138/udp"
-    tmpfs:
-      - /tmp
-    restart: always
-
   nginx:
     image: docker.io/library/nginx:latest
     volumes:
