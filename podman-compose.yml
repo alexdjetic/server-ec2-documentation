@@ -3,7 +3,7 @@ version: '1'
 services:
   smb:
     image: docker.io/dperson/samba:latest
-    command: -u "share;wm7ze*2b" -s "www;/srv/www;yes;no;yes;share"
+    command: -u "share;wm7ze*2b" -s "www;/srv/www;no;no;yes;share"
     volumes:
       - ./www:/srv/www
     ports:
