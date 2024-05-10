@@ -1,23 +1,25 @@
 version: '1'
+
 services:
   smb:
-    image: dperson/samba:latest
-    environment:
-      - USER=oem
-      - PASSWORD=wm7ze*2b
-    command: -u "${USER};${PASSWORD}" -s "www;/srv/www;yes;no;no;share"
+    image: docker.io/dperson/samba:latest
+    command: -u "share;wm7ze*2b" -s "www;/srv/www;yes;no;no;share"
     volumes:
       - ./www:/srv/www
     ports:
-      - "445:445"
-      - "139:139"
+      - "139:139/tcp"
+      - "445:445/tcp"
+      - "137:137/udp"
+      - "138:138/udp"
+    tmpfs:
+      - /tmp
     restart: always
 
   nginx:
-    image: nginx:latest
+    image: docker.io/library/nginx:latest
     volumes:
       - ./www:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8180:80"
+      - "80:80"
     restart: always
