@@ -21,15 +21,3 @@ services:
     ports:
       - "8180:80"
     restart: always
-
-  ftp:
-    image: atmoz/sftp:latest
-    volumes:
-      - ./www:/home/foo/upload
-    ports:
-      - "2222:22"
-    environment:
-      - USER=foo
-      - PASSWORD=pass
-    restart: always
-
