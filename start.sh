@@ -6,7 +6,7 @@
 
 # update repo and install package
 sudo apt update && apt upgrade -y
-sudo apt install podman -y
+sudo apt install podman podman-compose -y
 
 # podman start
 podman-compose up -d
